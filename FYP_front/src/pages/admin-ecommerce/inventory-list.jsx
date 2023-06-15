@@ -44,7 +44,7 @@ const ProductList = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Inventory</H5>
+            <H5>Inventoryii</H5>
           </FlexBox>
 
           <Button variant="contained" startIcon={<Add />}>
