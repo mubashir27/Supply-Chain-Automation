@@ -128,8 +128,8 @@ const InventoryList = Loadable(
 const ProductGrid = Loadable(
   lazy(() => import("./pages/admin-ecommerce/product-grid"))
 );
-const CreateProduct = Loadable(
-  lazy(() => import("./pages/admin-ecommerce/create-product"))
+const CreateInventory = Loadable(
+  lazy(() => import("./pages/admin-ecommerce/create-inventory"))
 );
 const CustomerManagement = Loadable(
   lazy(() => import("./pages/admin-ecommerce/customer-management"))
@@ -245,7 +245,7 @@ const dashboardRoutes = [
   },
   {
     path: "create-product",
-    element: <CreateProduct />,
+    element: <CreateInventory />,
   },
   //
   {
@@ -430,7 +430,7 @@ const dashboardRoutes = [
   },
   {
     path: "create-product",
-    element: <CreateProduct />,
+    element: <CreateInventory />,
   },
 
   {

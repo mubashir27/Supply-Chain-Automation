@@ -7,9 +7,7 @@ import UploadOnCloud from "icons/UploadOnCloud";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 import { lightTheme } from "../../../constants";
-const UploadImagesWrapper = styled(Box)(({
-  theme
-}) => ({
+const UploadImagesWrapper = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   borderRadius: "8px",
   "&::after": {
@@ -18,22 +16,22 @@ const UploadImagesWrapper = styled(Box)(({
     opacity: 0,
     width: "100%",
     content: '""',
-    height: "100%",
+    height: "70%",
     position: "absolute",
     transition: "opacity 0.3s",
-    backgroundColor: theme.palette.secondary[300]
+    backgroundColor: theme.palette.secondary[300],
   },
   "&:hover::after": {
-    opacity: 0.7
+    opacity: 0.7,
   },
   "&:hover .MuiButtonBase-root.MuiIconButton-root": {
-    visibility: "visible"
-  }
+    visibility: "visible",
+  },
 }));
-const DeleteIconButton = styled(IconButton)(({
-  theme
-}) => {
-  const bgColor = lightTheme(theme) ? "white" : theme.palette.background.default;
+const DeleteIconButton = styled(IconButton)(({ theme }) => {
+  const bgColor = lightTheme(theme)
+    ? "white"
+    : theme.palette.background.default;
   return {
     top: 10,
     right: 10,
@@ -44,40 +42,41 @@ const DeleteIconButton = styled(IconButton)(({
     backgroundColor: bgColor,
     transition: "visibility 0.2s",
     "&:hover": {
-      backgroundColor: bgColor
-    }
+      backgroundColor: bgColor,
+    },
   };
 }); // --------------------------------------------------------------
 
 // --------------------------------------------------------------
-const ImageUpload = ({
-  onDrop,
-  handleRemoveImage,
-  files
-}) => {
-  const {
-    getRootProps,
-    getInputProps
-  } = useDropzone({
+const ImageUpload = ({ onDrop, handleRemoveImage, files }) => {
+  const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [".png", ".gif", ".jpeg", ".jpg"]
+      "image/*": [".png", ".gif", ".jpeg", ".jpg"],
     },
-    onDrop
+    onDrop,
   });
-  return <Card sx={{
-    padding: 3
-  }}>
-      <Box {...getRootProps({
-      className: "dropzone"
-    })} sx={{
-      padding: 3,
-      cursor: "pointer",
-      textAlign: "center"
-    }}>
-        <UploadOnCloud sx={{
-        fontSize: 38,
-        color: "text.disabled"
-      }} />
+  return (
+    <Card
+      sx={{
+        padding: 3,
+        // backgroundColor: "black",
+        // height: "70%",
+      }}>
+      <Box
+        {...getRootProps({
+          className: "dropzone",
+        })}
+        sx={{
+          padding: 3,
+          cursor: "pointer",
+          textAlign: "center",
+        }}>
+        <UploadOnCloud
+          sx={{
+            fontSize: 38,
+            color: "text.disabled",
+          }}
+        />
         <Tiny fontWeight={600}>Drop your images here or</Tiny>
         <H6 fontSize={12} color="primary.main">
           Select click to browse
@@ -86,23 +85,33 @@ const ImageUpload = ({
         <input {...getInputProps()} placeholder="Select click to browse" />
       </Box>
 
-      {files.length > 0 && <FlexBox gap={2} mt={2}>
-          {files.map((file, index) => <UploadImagesWrapper key={index} position="relative">
-              <AppAvatar src={file.preview} sx={{
-          borderRadius: "0%",
-          width: 100,
-          height: 100
-        }} />
+      {files.length > 0 && (
+        <FlexBox gap={2} mt={2}>
+          {files.map((file, index) => (
+            <UploadImagesWrapper key={index} position="relative">
+              <AppAvatar
+                src={file.preview}
+                sx={{
+                  borderRadius: "0%",
+                  width: 100,
+                  height: 100,
+                }}
+              />
 
               <DeleteIconButton onClick={() => handleRemoveImage(file)}>
-                <DeleteOutlined sx={{
-            color: "text.disabled",
-            fontSize: 17
-          }} />
+                <DeleteOutlined
+                  sx={{
+                    color: "text.disabled",
+                    fontSize: 17,
+                  }}
+                />
               </DeleteIconButton>
-            </UploadImagesWrapper>)}
-        </FlexBox>}
-    </Card>;
+            </UploadImagesWrapper>
+          ))}
+        </FlexBox>
+      )}
+    </Card>
+  );
 };
 
 export default ImageUpload;

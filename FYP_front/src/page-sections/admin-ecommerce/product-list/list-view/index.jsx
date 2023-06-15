@@ -78,7 +78,7 @@ const BodyTableRow = styled(TableRow)(({ theme, select_row }) => ({
 //   );
 // });
 
-const ProductListView = () => {
+const ProductListView = ({ openModal }) => {
   const tableData = useMemo(() => LIST_PRODUCTS, []);
   const columns = useMemo(() => ColumnShape, []);
   const {

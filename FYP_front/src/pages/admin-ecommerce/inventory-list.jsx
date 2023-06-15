@@ -1,6 +1,7 @@
 import { TabContext, TabList } from "@mui/lab";
 import { Button, Tab } from "@mui/material";
 import { Box, styled } from "@mui/system";
+import AppModal from "components/AppModal";
 import FlexBetween from "components/flexbox/FlexBetween";
 import FlexBox from "components/flexbox/FlexBox";
 import IconWrapper from "components/IconWrapper";
@@ -9,6 +10,7 @@ import Add from "icons/Add";
 import ShoppingBasket from "icons/ShoppingBasket";
 import ProductListView from "page-sections/admin-ecommerce/product-list/list-view";
 import React, { useState } from "react"; //  styled components
+import CreateInventory from "./create-inventory";
 
 const HeadingWrapper = styled(FlexBetween)(({ theme }) => ({
   gap: 8,
@@ -27,11 +29,11 @@ const HeadingWrapper = styled(FlexBetween)(({ theme }) => ({
   },
 }));
 
-const ProductList = () => {
+const InventroyList = () => {
   const [selectTab, setSelectTab] = useState("1");
-
-  const handleChangeTab = (_, newTab) => setSelectTab(newTab);
-
+  const [openModal, setOpenModal] = useState(false);
+  const handleCloseModal = () => setOpenModal(false);
+  const handleOpenModal = () => setOpenModal(true);
   return (
     <Box pt={2} pb={4}>
       <TabContext value={selectTab}>
@@ -44,18 +46,28 @@ const ProductList = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Inventoryii</H5>
+            <H5>Inventory</H5>
           </FlexBox>
 
-          <Button variant="contained" startIcon={<Add />}>
+          <Button
+            onClick={() => {
+              setOpenModal(true);
+            }}
+            variant="contained"
+            startIcon={<Add />}>
             Add Product
           </Button>
         </HeadingWrapper>
 
-        <ProductListView />
+        <ProductListView openModal={handleOpenModal} />
       </TabContext>
+      {/* modal for adding and editing inventory list */}
+      <AppModal open={openModal} handleClose={handleCloseModal}>
+        <CreateInventory />
+      </AppModal>
+      {/* end modal for adding and editing inventory list end */}
     </Box>
   );
 };
 
-export default ProductList;
+export default InventroyList;

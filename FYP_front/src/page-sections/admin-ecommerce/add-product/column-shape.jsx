@@ -1,11 +1,9 @@
 import { IconButton } from "@mui/material";
-import AppModal from "components/AppModal";
 import AppAvatar from "components/avatars/AppAvatar";
 import FlexBox from "components/flexbox/FlexBox";
 import { H6 } from "components/Typography";
 import Delete from "icons/Delete";
 import Edit from "icons/Edit";
-import CreateInventory from "pages/admin-ecommerce/create-inventory";
 import { useState } from "react";
 const ColumnShape = [
   {
@@ -62,8 +60,6 @@ const ColumnShape = [
     Header: "Edit",
     accessor: "edit",
     Cell: ({ row }) => {
-      const [openModal, setOpenModal] = useState(false);
-      const handleCloseModal = () => setOpenModal(false);
       const style = {
         fontSize: 19,
         transition: "color 0.3s",
@@ -71,15 +67,12 @@ const ColumnShape = [
       };
       return (
         <FlexBox justifyContent="center">
-          <IconButton onClick={() => setOpenModal(true)}>
+          <IconButton>
             <Edit sx={style} />
           </IconButton>
           <IconButton>
             <Delete sx={style} />
           </IconButton>
-          <AppModal open={openModal} handleClose={handleCloseModal}>
-            <CreateInventory />
-          </AppModal>
         </FlexBox>
       );
     },

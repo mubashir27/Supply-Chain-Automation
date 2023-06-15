@@ -9,42 +9,48 @@ import IconWrapper from "components/IconWrapper";
 import ShoppingBasket from "icons/ShoppingBasket";
 import { useCallback, useState } from "react";
 
-const CreateProduct = () => {
+const CreateInventory = () => {
   const [files, setFiles] = useState([]);
 
-  const handleChangeDescription = value => {
+  const handleChangeDescription = (value) => {
     console.log(value);
   };
 
-  const handleDropFile = useCallback(acceptedFiles => {
-    const files = acceptedFiles.map(file => Object.assign(file, {
-      preview: URL.createObjectURL(file)
-    }));
+  const handleDropFile = useCallback((acceptedFiles) => {
+    const files = acceptedFiles.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      })
+    );
     setFiles(files);
   }, []);
 
-  const handleRemoveImage = file => {
-    const filteredFiles = files.filter(_file => _file !== file);
+  const handleRemoveImage = (file) => {
+    const filteredFiles = files.filter((_file) => _file !== file);
     setFiles(filteredFiles);
   };
 
-  return <Box pt={2} pb={4}>
+  return (
+    <Box pt={2} pb={4}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <FlexBox gap={0.5} alignItems="center">
             <IconWrapper>
-              <ShoppingBasket sx={{
-              color: "primary.main"
-            }} />
+              <ShoppingBasket
+                sx={{
+                  color: "primary.main",
+                }}
+              />
             </IconWrapper>
             <H5>Create New Product</H5>
           </FlexBox>
         </Grid>
 
         <Grid item md={6} xs={12}>
-          <Card sx={{
-          padding: 3
-        }}>
+          <Card
+            sx={{
+              padding: 3,
+            }}>
             <H5 mb={3}>Main Parameters</H5>
 
             <Grid container spacing={2}>
@@ -61,10 +67,14 @@ const CreateProduct = () => {
                 <AppTextField label="Priority" fullWidth />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <AppTextField select fullWidth label="Name" SelectProps={{
-                native: true,
-                IconComponent: KeyboardArrowDown
-              }}>
+                <AppTextField
+                  select
+                  fullWidth
+                  label="Name"
+                  SelectProps={{
+                    native: true,
+                    IconComponent: KeyboardArrowDown,
+                  }}>
                   <option value="electronics">Electronics</option>
                   <option value="gadget">Gadget</option>
                   <option value="shoes">Shoes</option>
@@ -87,10 +97,11 @@ const CreateProduct = () => {
         </Grid>
 
         <Grid item md={6} xs={12}>
-          <Card sx={{
-          padding: 3,
-          height: "100%"
-        }}>
+          <Card
+            sx={{
+              padding: 3,
+              height: "100%",
+            }}>
             <H5 mb={3}>Prices and Warehouses</H5>
 
             <Grid container spacing={2}>
@@ -115,7 +126,11 @@ const CreateProduct = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <ImageUpload handleRemoveImage={handleRemoveImage} onDrop={handleDropFile} files={files} />
+          <ImageUpload
+            handleRemoveImage={handleRemoveImage}
+            onDrop={handleDropFile}
+            files={files}
+          />
         </Grid>
 
         <Grid item xs={12}>
@@ -125,7 +140,8 @@ const CreateProduct = () => {
           </FlexBox>
         </Grid>
       </Grid>
-    </Box>;
+    </Box>
+  );
 };
 
-export default CreateProduct;
+export default CreateInventory;
