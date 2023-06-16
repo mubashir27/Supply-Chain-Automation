@@ -220,7 +220,7 @@ const AddCustomerModal = ({ open, onClose, edit, data }) => {
               error={Boolean(errors.state && touched.state)}
               helperText={touched.state && errors.state}
             /> */}
-            <H6 mb={1}>Birthday</H6>
+            <H6 mb={1}>Date</H6>
             <DatePicker
               value={values.date}
               onChange={(date) => setFieldValue("date", date)}
