@@ -46,7 +46,7 @@ const InventroyList = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Inventory</H5>
+            <H5>Inventsssory</H5>
           </FlexBox>
 
           <Button

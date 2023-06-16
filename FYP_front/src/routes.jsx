@@ -244,7 +244,7 @@ const dashboardRoutes = [
     element: <CustomerManagement />,
   },
   {
-    path: "create-product",
+    path: "create-inventory",
     element: <CreateInventory />,
   },
   //
@@ -429,7 +429,7 @@ const dashboardRoutes = [
     element: <ProductGrid />,
   },
   {
-    path: "create-product",
+    path: "create-inventory",
     element: <CreateInventory />,
   },
 

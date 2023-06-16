@@ -29,6 +29,7 @@ const CreateInventory = () => {
     const filteredFiles = files.filter((_file) => _file !== file);
     setFiles(filteredFiles);
   };
+  // Items, producer, category, cost, price, quantity, description, Date,
 
   return (
     <Box pt={2} pb={4}>
@@ -42,11 +43,11 @@ const CreateInventory = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Create New Product</H5>
+            <H5>Create New Inventory</H5>
           </FlexBox>
         </Grid>
 
-        <Grid item md={6} xs={12}>
+        <Grid item md={12} xs={12}>
           <Card
             sx={{
               padding: 3,
@@ -55,48 +56,34 @@ const CreateInventory = () => {
 
             <Grid container spacing={2}>
               <Grid item sm={6} xs={12}>
-                <AppTextField label="Manufacturer" fullWidth />
+                <AppTextField label="Item" fullWidth />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <AppTextField label="Model" fullWidth />
+                <AppTextField label="Producer" fullWidth />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <AppTextField label="ID Number" fullWidth />
+                <AppTextField label="Category" fullWidth />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <AppTextField label="Priority" fullWidth />
+                <AppTextField label="Cost" fullWidth />
               </Grid>
               <Grid item sm={6} xs={12}>
-                <AppTextField
-                  select
-                  fullWidth
-                  label="Name"
-                  SelectProps={{
-                    native: true,
-                    IconComponent: KeyboardArrowDown,
-                  }}>
-                  <option value="electronics">Electronics</option>
-                  <option value="gadget">Gadget</option>
-                  <option value="shoes">Shoes</option>
-                </AppTextField>
-              </Grid>
-              <Grid item sm={6} xs={12}>
-                <AppTextField label="Model" fullWidth />
+                <AppTextField label="Quantity" fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <AppTextField label="Meta Title" fullWidth />
+                <AppTextField label="Price" fullWidth />
               </Grid>
               <Grid item xs={12}>
                 <AppTextField label="Meta Tags" fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <AppTextField label="Meta Description" fullWidth />
+                <QuillEditor value="" onChange={handleChangeDescription} />
               </Grid>
             </Grid>
           </Card>
         </Grid>
 
-        <Grid item md={6} xs={12}>
+        {/* <Grid item md={6} xs={12}>
           <Card
             sx={{
               padding: 3,
@@ -123,7 +110,7 @@ const CreateInventory = () => {
               </Grid>
             </Grid>
           </Card>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
           <ImageUpload
@@ -145,3 +132,4 @@ const CreateInventory = () => {
 };
 
 export default CreateInventory;
+// Items, producer, category, cost, price, quantity, description, Date,
