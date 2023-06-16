@@ -36,7 +36,7 @@ const QuillEditor = ({ value, onChange }) => {
         theme="snow"
         value={value || ""}
         onChange={onChange}
-        placeholder="The "
+        placeholder="Please share description about Inventory."
       />
     </EditorWrapper>
   );

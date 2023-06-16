@@ -78,7 +78,7 @@ const ColumnShape = [
             <Delete sx={style} />
           </IconButton>
           <AppModal open={openModal} handleClose={handleCloseModal}>
-            <CreateInventory />
+            <CreateInventory heading="Edit Inventory" />
           </AppModal>
         </FlexBox>
       );

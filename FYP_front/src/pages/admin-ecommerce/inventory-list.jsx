@@ -46,7 +46,7 @@ const InventroyList = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Inventsssory</H5>
+            <H5>Inventory</H5>
           </FlexBox>
 
           <Button
@@ -63,7 +63,7 @@ const InventroyList = () => {
       </TabContext>
       {/* modal for adding and editing inventory list */}
       <AppModal open={openModal} handleClose={handleCloseModal}>
-        <CreateInventory />
+        <CreateInventory heading={"Create New Inventory"} />
       </AppModal>
       {/* end modal for adding and editing inventory list end */}
     </Box>

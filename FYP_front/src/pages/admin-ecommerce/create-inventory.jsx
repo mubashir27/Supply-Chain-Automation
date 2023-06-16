@@ -8,9 +8,12 @@ import AppTextField from "components/input-fields/AppTextField";
 import IconWrapper from "components/IconWrapper";
 import ShoppingBasket from "icons/ShoppingBasket";
 import { useCallback, useState } from "react";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-const CreateInventory = () => {
+const CreateInventory = (props) => {
+  const { heading } = props;
   const [files, setFiles] = useState([]);
+  const [date, setDate] = useState(new Date());
 
   const handleChangeDescription = (value) => {
     console.log(value);
@@ -43,7 +46,7 @@ const CreateInventory = () => {
                 }}
               />
             </IconWrapper>
-            <H5>Create New Inventory</H5>
+            <H5>{heading}</H5>
           </FlexBox>
         </Grid>
 
@@ -52,8 +55,6 @@ const CreateInventory = () => {
             sx={{
               padding: 3,
             }}>
-            <H5 mb={3}>Main Parameters</H5>
-
             <Grid container spacing={2}>
               <Grid item sm={6} xs={12}>
                 <AppTextField label="Item" fullWidth />
@@ -70,11 +71,33 @@ const CreateInventory = () => {
               <Grid item sm={6} xs={12}>
                 <AppTextField label="Quantity" fullWidth />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <AppTextField label="Price" fullWidth />
               </Grid>
-              <Grid item xs={12}>
-                <AppTextField label="Meta Tags" fullWidth />
+              <Grid item xs={6}>
+                {/* <AppTextField label="Date" fullWidth /> */}
+                <DatePicker
+                  label="Date"
+                  value={date}
+                  onChange={(newValue) => setDate(newValue)}
+                  renderInput={(params) => (
+                    <AppTextField {...params} fullWidth />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <AppTextField
+                  fullWidth
+                  select
+                  label="Status"
+                  SelectProps={{
+                    native: true,
+                    IconComponent: KeyboardArrowDown,
+                  }}>
+                  <option value="done">Done</option>
+                  <option value="inProcess">In Process</option>
+                  {/* <option value="taka"></option> */}
+                </AppTextField>
               </Grid>
               <Grid item xs={12}>
                 <QuillEditor value="" onChange={handleChangeDescription} />
