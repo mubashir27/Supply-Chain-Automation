@@ -100,7 +100,11 @@ const CreateInventory = (props) => {
                 </AppTextField>
               </Grid>
               <Grid item xs={12}>
-                <QuillEditor value="" onChange={handleChangeDescription} />
+                <QuillEditor
+                  value=""
+                  placeholder={"Please share description about Inventory."}
+                  onChange={handleChangeDescription}
+                />
               </Grid>
             </Grid>
           </Card>

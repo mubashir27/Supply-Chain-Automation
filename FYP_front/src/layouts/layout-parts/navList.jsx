@@ -192,7 +192,7 @@ const index = [
       },
       {
         name: "Customer Management",
-        path: "/dashboard/customer-management",
+        path: "/dashboard/supplier-management",
       },
     ],
   },

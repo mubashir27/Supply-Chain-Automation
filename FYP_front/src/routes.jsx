@@ -82,6 +82,9 @@ const Checkout = Loadable(lazy(() => import("./pages/ecommerce/checkout")));
 const CheckoutV2 = Loadable(
   lazy(() => import("./pages/ecommerce/checkout-v2"))
 );
+const OrderManagement2 = Loadable(
+  lazy(() => import("./pages/admin-ecommerce/order-management-v2"))
+);
 const ProductDetails = Loadable(
   lazy(() => import("./pages/ecommerce/product-details"))
 );
@@ -240,7 +243,7 @@ const dashboardRoutes = [
     element: <InventoryList />,
   },
   {
-    path: "customer-management",
+    path: "supplier-management",
     element: <CustomerManagement />,
   },
   {
@@ -405,6 +408,10 @@ const dashboardRoutes = [
     element: <CheckoutV2 />,
   },
   {
+    path: "order-management",
+    element: <OrderManagement2 />,
+  },
+  {
     path: "product-details",
     element: <ProductDetails />,
   },
@@ -433,10 +440,10 @@ const dashboardRoutes = [
     element: <CreateInventory />,
   },
 
-  {
-    path: "order-management",
-    element: <OrderManagement />,
-  },
+  // {
+  //   path: "order-management",
+  //   element: <OrderManagement />,
+  // },
   {
     path: "product-management",
     element: <ProductManagement />,

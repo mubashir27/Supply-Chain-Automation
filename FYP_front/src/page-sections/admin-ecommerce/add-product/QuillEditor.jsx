@@ -28,7 +28,7 @@ const EditorWrapper = styled(Box)(({ theme }) => {
 }); // ------------------------------------------------
 
 // ------------------------------------------------
-const QuillEditor = ({ value, onChange }) => {
+const QuillEditor = ({ value, onChange, placeholder }) => {
   return (
     <EditorWrapper>
       <ReactQuill
@@ -36,7 +36,7 @@ const QuillEditor = ({ value, onChange }) => {
         theme="snow"
         value={value || ""}
         onChange={onChange}
-        placeholder="Please share description about Inventory."
+        placeholder={placeholder}
       />
     </EditorWrapper>
   );
