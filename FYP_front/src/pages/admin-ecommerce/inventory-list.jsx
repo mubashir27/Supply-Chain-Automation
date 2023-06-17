@@ -48,15 +48,25 @@ const InventroyList = () => {
             </IconWrapper>
             <H5>Inventory</H5>
           </FlexBox>
-
-          <Button
-            onClick={() => {
-              setOpenModal(true);
-            }}
-            variant="contained"
-            startIcon={<Add />}>
-            Add Product
-          </Button>
+          <Box>
+            <Button
+              onClick={() => {
+                setOpenModal(true);
+              }}
+              style={{ marginRight: 20 }}
+              variant="contained"
+              startIcon={<Add />}>
+              Import Excell
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenModal(true);
+              }}
+              variant="contained"
+              startIcon={<Add />}>
+              Add Product
+            </Button>
+          </Box>
         </HeadingWrapper>
 
         <ProductListView openModal={handleOpenModal} />
