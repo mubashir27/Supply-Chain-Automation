@@ -1,10 +1,11 @@
 import { Edit } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Card, IconButton, Typography } from "@mui/material";
 import AppAvatar from "components/avatars/AppAvatar";
 import FlexBox from "components/flexbox/FlexBox";
 import { H6, Small, Tiny } from "components/Typography";
 import { Fragment, useState } from "react";
 import AddCustomerModal from "../AddCustomerModal";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 const CustomerColumnShape = [
   {
     Header: "Supplier Name",
@@ -61,7 +62,10 @@ const CustomerColumnShape = [
     accessor: "edit",
     maxWidth: 100,
     Cell: ({ row }) => {
+      console.log("row", row);
       const [openModal, setOpenModal] = useState(false);
+      // const [openAccrodian, setOpenAccrodian] = useState(false);
+
       return (
         <Fragment>
           <IconButton onClick={() => setOpenModal(true)}>
@@ -72,7 +76,21 @@ const CustomerColumnShape = [
               }}
             />
           </IconButton>
-
+          {/* <IconButton onClick={() => setOpenAccrodian(!openAccrodian)}>
+            <KeyboardArrowDownRoundedIcon
+              sx={{
+                my: 1,
+                fontSize: 18,
+                color: "text.disabled",
+              }}
+            />
+          </IconButton> */}
+          {/* want to pass the list of pricing data */}
+          {/* {openAccrodian && (
+            <Card>
+              <Typography>hello</Typography>
+            </Card>
+          )} */}
           <AddCustomerModal
             edit
             open={openModal}

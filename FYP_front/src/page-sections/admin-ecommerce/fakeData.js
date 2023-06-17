@@ -105,6 +105,31 @@ export const customersFakeData = [
     email: "kishor@gmail.com",
     location: "Malir",
     status: "Active",
+    price: [
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "4 days",
+      },
+      {
+        "order-placed": "21-10-2020",
+        "order-deliverd": "24-10-2020",
+        payment: "Not Done",
+        delay: "",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "15 days",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+      },
+    ],
   },
   {
     date: format(new Date(), "MMM dd, yyyy"),
@@ -115,6 +140,31 @@ export const customersFakeData = [
     email: "kabber@gmail.com",
     location: "New Karachi",
     status: "Blocked",
+    price: [
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "4 days",
+      },
+      {
+        "order-placed": "21-10-2020",
+        "order-deliverd": "24-10-2020",
+        payment: "Not Done",
+        delay: "",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "15 days",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+      },
+    ],
   },
   {
     date: format(new Date(), "MMM dd, yyyy"),

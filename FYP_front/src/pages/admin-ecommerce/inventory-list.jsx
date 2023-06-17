@@ -81,3 +81,6 @@ const InventroyList = () => {
 };
 
 export default InventroyList;
+// supplier managment mai purana records bhi hona chahya hain. taka uss ko bata sakain ka ka ya supplier kesa hai
+// supplier managment ka record order managment sa linked hai drop down jes mai sara spplier progress achi hogi top mai ajaya ga
+// inventory local hai jitna order aya ga utna inventory sa subtract hojaya ga
