@@ -1,16 +1,25 @@
 import { Box, Card, Grid } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import AppTextField from "components/input-fields/AppTextField";
 import GoogleMapReact from "google-map-react";
+import QuillEditor from "page-sections/admin-ecommerce/add-product/QuillEditor";
+import { useState } from "react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const OrderManagement2 = () => {
+  const [date, setDate] = useState(new Date());
+
   const defaultProps = {
     center: {
       lat: 10.99835602,
       lng: 77.01502627,
     },
     zoom: 11,
+  };
+
+  const handleChangeDescription = (value) => {
+    console.log(value);
   };
 
   return (
@@ -24,7 +33,10 @@ const OrderManagement2 = () => {
             <Grid container spacing={3}>
               <Grid item xs={7}>
                 <Box py={1}>
-                  <AppTextField label="Name" fullWidth />
+                  <AppTextField label="Product Name" fullWidth />
+                </Box>
+                <Box py={1}>
+                  <AppTextField label="Supplier Dropdown" fullWidth />
                 </Box>
                 <Box py={1}>
                   <AppTextField label="Opening Time" fullWidth />
@@ -45,7 +57,7 @@ const OrderManagement2 = () => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
+            <Grid sx={{ my: 1 }} container spacing={2}>
               <Grid item md={6} xs={12}>
                 <AppTextField label="Address" fullWidth />
               </Grid>
@@ -54,6 +66,35 @@ const OrderManagement2 = () => {
               </Grid>
               <Grid item md={6} xs={12}>
                 <AppTextField label="Mobile Number" fullWidth type="number" />
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <AppTextField label="Item Name" fullWidth type="number" />
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <AppTextField label="Category" fullWidth type="number" />
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <AppTextField label="Cost" fullWidth type="number" />
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <AppTextField label="Quantity" fullWidth type="number" />
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <DatePicker
+                  label="Date"
+                  value={date}
+                  onChange={(newValue) => setDate(newValue)}
+                  renderInput={(params) => (
+                    <AppTextField {...params} fullWidth />
+                  )}
+                />
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <QuillEditor
+                  value=""
+                  placeholder={"Please share description about Inventory."}
+                  onChange={handleChangeDescription}
+                />
               </Grid>
               <Grid item md={6} xs={12}></Grid>
             </Grid>
@@ -77,3 +118,4 @@ const OrderManagement2 = () => {
 };
 
 export default OrderManagement2;
+// Items, producer, category, cost, price, quantity, description, Date,

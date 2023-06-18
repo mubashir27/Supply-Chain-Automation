@@ -159,4 +159,3 @@ const CreateInventory = (props) => {
 };
 
 export default CreateInventory;
-// Items, producer, category, cost, price, quantity, description, Date,
