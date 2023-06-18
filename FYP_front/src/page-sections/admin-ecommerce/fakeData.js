@@ -116,7 +116,7 @@ export const customersFakeData = [
         "order-placed": "21-10-2020",
         "order-deliverd": "24-10-2020",
         payment: "Not Done",
-        delay: "",
+        delay: "-",
       },
       {
         "order-placed": "10-09-2020",
@@ -175,6 +175,31 @@ export const customersFakeData = [
     email: "haji@gmail.com",
     location: "Juhar",
     status: "Active",
+    price: [
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "4 days",
+      },
+      {
+        "order-placed": "21-10-2020",
+        "order-deliverd": "24-10-2020",
+        payment: "Not Done",
+        delay: "-",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "15 days",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+      },
+    ],
   },
   {
     date: format(new Date(), "MMM dd, yyyy"),
@@ -184,5 +209,31 @@ export const customersFakeData = [
     email: "preeti@gmail.com",
     location: "Landhi",
     status: "Blocked",
+    price: [
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "4 days",
+      },
+      {
+        "order-placed": "21-10-2020",
+        "order-deliverd": "24-10-2020",
+        payment: "Done",
+        delay: "0 days",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "15 days",
+      },
+      {
+        "order-placed": "10-09-2020",
+        "order-deliverd": "12-09-2020",
+        payment: "Done",
+        delay: "2 days",
+      },
+    ],
   },
 ];

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { searchByName } from "utils/utils";
 import { HeadingWrapper } from "./product-management";
+import SupplierManagementV2 from "./supplier-managment-v2";
 
 const CustomerManagement = () => {
   const { t } = useTranslation();
@@ -34,6 +35,10 @@ const CustomerManagement = () => {
       (item.status === "Blocked" && currentTab === "3") ||
       currentTab === "1"
   );
+
+  const SingleDataElement = () =>
+    filteredData.map((m) => <SupplierManagementV2 data={m} />);
+
   return (
     <Box pt={2} pb={4}>
       <HeadingWrapper justifyContent="space-between" alignItems="center">
@@ -72,8 +77,8 @@ const CustomerManagement = () => {
             />
           ))}
         </TabList>
-
-        <CustomTable data={filteredData} columnShape={CustomerColumnShape} />
+        {/* <CustomTable data={filteredData} columnShape={CustomerColumnShape} /> */}
+        {SingleDataElement()}
       </TabContext>
     </Box>
   );
