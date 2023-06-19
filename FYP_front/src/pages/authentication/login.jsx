@@ -36,7 +36,7 @@ const Login = () => {
           <FlexBetween>
             <FlexBox alignItems="center" gap={1}>
               <AppCheckBox defaultChecked />
-              <Small fontSize={12}>Remember me</Small>
+              <Small fontSize={12}>Remember2 me</Small>
             </FlexBox>
 
             <Button
