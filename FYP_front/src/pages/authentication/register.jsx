@@ -14,7 +14,11 @@ import { NavLink } from "react-router-dom";
 import Facebook from "icons/Facebook";
 import GoogleIcon from "icons/GoogleIcon";
 import Twitter from "icons/Twitter";
-import { RegisterAPI } from "services/AuthenticationFunctions";
+import {
+  CurrentAPI,
+  LoginAPI,
+  RegisterAPI,
+} from "services/AuthenticationFunctions";
 const StyledButton = styled(ButtonBase)(({ theme }) => ({
   width: "100%",
   padding: 12,
@@ -46,18 +50,25 @@ const Register = () => {
 
   const onSubmit = () => {
     const body = {
-      firstName: registeredUser?.firstName,
-      lastName: registeredUser?.lastName,
       email: registeredUser?.email,
       password: registeredUser?.password,
     };
 
     let data = {};
 
-    RegisterAPI(body)
+    RegisterAPI({
+      ...body,
+      firstName: registeredUser?.firstName,
+      lastName: registeredUser?.lastName,
+    })
       .then((res) => {
         data = res;
         console.log("DATAIS", res);
+        LoginAPI(body).then((resp) => {
+          console.log("res of login", resp);
+          const { data } = resp;
+          CurrentAPI(data?.accessToken);
+        });
       })
       .catch((err) => console.log("BASE_URL1", err));
   };

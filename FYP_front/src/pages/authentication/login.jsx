@@ -8,7 +8,8 @@ import Facebook from "icons/Facebook";
 import GoogleIcon from "icons/GoogleIcon";
 import Twitter from "icons/Twitter";
 import AuthenticationLayout from "page-sections/authentication/AuthenticationLayout";
-import React from "react";
+import React, { useState } from "react";
+import { CurrentAPI, LoginAPI } from "services/AuthenticationFunctions";
 const StyledButton = styled(ButtonBase)(({ theme }) => ({
   width: "100%",
   padding: 12,
@@ -23,6 +24,28 @@ const StyledButton = styled(ButtonBase)(({ theme }) => ({
 }));
 
 const Login = () => {
+  const [loginUser, setLoginUser] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginUser({
+      ...loginUser,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = () => {
+    LoginAPI(loginUser)
+      .then((resp) => {
+        console.log("res of login", resp);
+        const { data } = resp;
+        CurrentAPI(data?.accessToken);
+      })
+      .catch((err) => console.log("Login Error", err));
+  };
+
   return (
     <AuthenticationLayout
       route="/register"
@@ -31,13 +54,22 @@ const Login = () => {
       routeName="Create an account">
       <form>
         <Stack gap={2} mt={5}>
-          <AppTextField fullWidth label="Email" />
-          <AppTextField fullWidth label="Password" />
+          <AppTextField
+            onChange={handleChange}
+            fullWidth
+            label="Email"
+            name="email"
+            value={loginUser.email}
+          />
+          <AppTextField
+            onChange={handleChange}
+            fullWidth
+            label="Password"
+            name="password"
+            value={loginUser.password}
+          />
           <FlexBetween>
-            <FlexBox alignItems="center" gap={1}>
-              <AppCheckBox defaultChecked />
-              <Small fontSize={12}>Remember2 me</Small>
-            </FlexBox>
+            <FlexBox alignItems="center" gap={1}></FlexBox>
 
             <Button
               disableRipple
@@ -48,8 +80,9 @@ const Login = () => {
               Forget Password
             </Button>
           </FlexBetween>
-
-          <Button variant="contained">Sign In</Button>
+          <Button variant="contained" onClick={() => onSubmit()}>
+            Sign In
+          </Button>
         </Stack>
       </form>
     </AuthenticationLayout>
