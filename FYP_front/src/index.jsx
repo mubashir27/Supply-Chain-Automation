@@ -14,17 +14,17 @@ import SettingsProvider from "contexts/settingsContext";
 import reportWebVitals from "./reportWebVitals";
 import "./__fakeData__";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<React.StrictMode>
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <SettingsProvider>
-        <JWTAuthProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </JWTAuthProvider>
-      </SettingsProvider>
-    </LocalizationProvider>
-  </React.StrictMode>); // If you want to start measuring performance in your app, pass a function
+root.render(
+  <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <SettingsProvider>
+      <JWTAuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </JWTAuthProvider>
+    </SettingsProvider>
+  </LocalizationProvider>
+); // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 

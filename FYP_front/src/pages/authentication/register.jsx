@@ -1,44 +1,26 @@
-import {
-  Button,
-  Grid,
-  ButtonBase,
-  Divider,
-  Stack,
-  styled,
-} from "@mui/material";
+import { Button, Grid, ButtonBase, Stack, styled } from "@mui/material";
 import AuthenticationLayout from "page-sections/authentication/AuthenticationLayout";
-import { Small } from "components/Typography";
 import AppTextField from "components/input-fields/AppTextField";
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import Facebook from "icons/Facebook";
-import GoogleIcon from "icons/GoogleIcon";
-import Twitter from "icons/Twitter";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   CurrentAPI,
   LoginAPI,
   RegisterAPI,
 } from "services/AuthenticationFunctions";
-const StyledButton = styled(ButtonBase)(({ theme }) => ({
-  width: "100%",
-  padding: 12,
-  marginBottom: 16,
-  borderRadius: "8px",
-  fontWeight: "500",
-  border: `1px solid ${theme.palette.divider}`,
-  [theme.breakpoints.down(454)]: {
-    width: "100%",
-    marginBottom: 8,
-  },
-}));
+import { RegistrationContext } from "context/RegistrationContext";
+import useRegistration from "hooks/useRegistration";
 
 const Register = () => {
+  const navigate = useNavigate();
+  useRegistration();
   const [registeredUser, setRegisteredUser] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
+  const { setRegister } = useContext(RegistrationContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,7 +49,12 @@ const Register = () => {
         LoginAPI(body).then((resp) => {
           console.log("res of login", resp);
           const { data } = resp;
-          CurrentAPI(data?.accessToken);
+          CurrentAPI(data?.accessToken).then((response) => {
+            console.log("current body", response);
+            setRegister(response);
+            localStorage.setItem("user", response.data.email);
+            navigate("/dashboard");
+          });
         });
       })
       .catch((err) => console.log("BASE_URL1", err));

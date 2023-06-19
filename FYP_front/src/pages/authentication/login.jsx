@@ -1,29 +1,18 @@
 import { Button, ButtonBase, Divider, Stack, styled } from "@mui/material";
-import AppCheckBox from "components/AppCheckBox";
 import FlexBetween from "components/flexbox/FlexBetween";
 import FlexBox from "components/flexbox/FlexBox";
 import AppTextField from "components/input-fields/AppTextField";
-import { Small } from "components/Typography";
-import Facebook from "icons/Facebook";
-import GoogleIcon from "icons/GoogleIcon";
-import Twitter from "icons/Twitter";
+import { RegistrationContext } from "context/RegistrationContext";
+import useRegistration from "hooks/useRegistration";
 import AuthenticationLayout from "page-sections/authentication/AuthenticationLayout";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CurrentAPI, LoginAPI } from "services/AuthenticationFunctions";
-const StyledButton = styled(ButtonBase)(({ theme }) => ({
-  width: "100%",
-  padding: 12,
-  marginBottom: 16,
-  borderRadius: "8px",
-  fontWeight: "500",
-  border: `1px solid ${theme.palette.divider}`,
-  [theme.breakpoints.down(454)]: {
-    width: "100%",
-    marginBottom: 8,
-  },
-}));
 
 const Login = () => {
+  const navigate = useNavigate();
+  useRegistration();
+  const { setRegister } = useContext(RegistrationContext);
   const [loginUser, setLoginUser] = useState({
     email: "",
     password: "",
@@ -41,7 +30,12 @@ const Login = () => {
       .then((resp) => {
         console.log("res of login", resp);
         const { data } = resp;
-        CurrentAPI(data?.accessToken);
+        CurrentAPI(data?.accessToken).then((response) => {
+          console.log("current body", response);
+          setRegister(response);
+          localStorage.setItem("user", response.data.email);
+          navigate("/dashboard");
+        });
       })
       .catch((err) => console.log("Login Error", err));
   };
