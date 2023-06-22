@@ -44,7 +44,7 @@ const Login = () => {
     <AuthenticationLayout
       route="/register"
       description="New Here?"
-      title="Sign in to Uko"
+      title="Sign in to SCA"
       routeName="Create an account">
       <form>
         <Stack gap={2} mt={5}>

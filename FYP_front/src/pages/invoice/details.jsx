@@ -1,4 +1,13 @@
-import { Box, Button, Card, Divider, Grid, Stack, styled, TableRow } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Stack,
+  styled,
+  TableRow,
+} from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,48 +18,50 @@ import DownloadTo from "icons/DownloadTo";
 import { Link } from "react-router-dom";
 import { lightTheme } from "../../constants"; // styled components
 
-const HeadTableCell = styled(TableCell)(({
-  theme
-}) => ({
+const HeadTableCell = styled(TableCell)(({ theme }) => ({
   padding: 0,
   fontSize: 12,
   fontWeight: 600,
   paddingBottom: 5,
   color: theme.palette.text.secondary,
-  borderBottom: `1px solid ${lightTheme(theme) ? theme.palette.grey[300] : theme.palette.divider}`,
+  borderBottom: `1px solid ${
+    lightTheme(theme) ? theme.palette.grey[300] : theme.palette.divider
+  }`,
   "&:last-of-type": {
-    textAlign: "right"
-  }
+    textAlign: "right",
+  },
 }));
 const BodyTableCell = styled(TableCell)(() => ({
   fontSize: 12,
   padding: "10px 0",
   "&:last-of-type": {
     textAlign: "right",
-    fontWeight: 600
-  }
+    fontWeight: 600,
+  },
 }));
-const StyledSmall = styled(Small)(({
-  theme,
-  type
-}) => ({
+const StyledSmall = styled(Small)(({ theme, type }) => ({
   fontSize: 12,
   color: "white",
   padding: "4px 10px",
   borderRadius: "4px",
-  backgroundColor: type === "success" ? theme.palette.success.main : theme.palette.primary.main
+  backgroundColor:
+    type === "success"
+      ? theme.palette.success.main
+      : theme.palette.primary.main,
 }));
 
 const InvoiceDetails = () => {
-  return <Box pt={2} pb={4}>
-      <Card sx={{
-      padding: "2rem 1rem"
-    }}>
+  return (
+    <Box pt={2} pb={4}>
+      <Card
+        sx={{
+          padding: "2rem 1rem",
+        }}>
         <Grid container spacing={3}>
           <Grid item md={7} xs={12}>
             <FlexBetween>
               <Box width={60}>
-                <img src="/static/logo/logo.svg" height="36px" alt="" />
+                <img src="/static/logo/chain.png" height="36px" alt="" />
               </Box>
 
               <Stack textAlign="right">
@@ -76,26 +87,29 @@ const InvoiceDetails = () => {
 
             <H6 mb={1} color="text.secondary">
               Issue Date:{" "}
-              <Span sx={{
-              color: "text.primary",
-              fontWeight: 500
-            }}>
+              <Span
+                sx={{
+                  color: "text.primary",
+                  fontWeight: 500,
+                }}>
                 03/10/2018
               </Span>
             </H6>
             <H6 color="text.secondary">
               Due date:{" "}
-              <Span sx={{
-              color: "text.primary",
-              fontWeight: 500
-            }}>
+              <Span
+                sx={{
+                  color: "text.primary",
+                  fontWeight: 500,
+                }}>
                 07/10/2018
               </Span>
             </H6>
 
-            <Table sx={{
-            mt: 3
-          }}>
+            <Table
+              sx={{
+                mt: 3,
+              }}>
               <TableHead>
                 <TableRow>
                   <HeadTableCell>Description</HeadTableCell>
@@ -155,12 +169,13 @@ const InvoiceDetails = () => {
           </Grid>
 
           <Grid item md={5} xs={12}>
-            <Box sx={{
-            padding: 3,
-            height: "100%",
-            borderRadius: "4px",
-            backgroundColor: "action.selected"
-          }}>
+            <Box
+              sx={{
+                padding: 3,
+                height: "100%",
+                borderRadius: "4px",
+                backgroundColor: "action.selected",
+              }}>
               <Stack spacing={2} direction="row" alignItems="center">
                 <StyledSmall type="success">Approved</StyledSmall>
                 <StyledSmall>Pending Payment</StyledSmall>
@@ -215,7 +230,8 @@ const InvoiceDetails = () => {
           </Grid>
         </Grid>
       </Card>
-    </Box>;
+    </Box>
+  );
 };
 
 export default InvoiceDetails;

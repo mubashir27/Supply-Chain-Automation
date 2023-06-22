@@ -75,7 +75,7 @@ const AddCustomerModal = ({ open, onClose, edit, data }) => {
   });
   return (
     <StyledAppModal open={open} handleClose={onClose}>
-      <H2>{edit ? "Edit Product" : "Add new Customer"}</H2>
+      <H2>{edit ? "Edit Product" : "Add new Supplier"}</H2>
 
       <Box textAlign="center" py={3}>
         <StyledBadge

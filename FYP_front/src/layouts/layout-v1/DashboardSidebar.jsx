@@ -136,7 +136,7 @@ const DashboardSidebar = (props) => {
         }}>
         {/* LOGO */}
         <FlexBox ml={1.5} mb={2}>
-          <img src="/static/logo/logo.svg" alt="logo" width={18} />
+          <img src="/static/logo/chain.png" alt="logo" width={18} />
           <StyledLogo>UKO</StyledLogo>
         </FlexBox>
 

@@ -15,45 +15,44 @@ const ForgetPassword = () => {
   const [loading, setLoading] = useState(false);
   const initialValues = {
     email: "demo@example.com",
-    submit: null
+    submit: null,
   }; // form field value validation schema
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Must be a valid email").max(255).required("Email is required")
+    email: Yup.string()
+      .email("Must be a valid email")
+      .max(255)
+      .required("Email is required"),
   });
-  const {
-    errors,
-    values,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit
-  } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: values => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        toast.success("Reset link has been sent!");
-      }, 1000);
+  const { errors, values, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: (values) => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          toast.success("Reset link has been sent!");
+        }, 1000);
 
-      if (error) {
-        setError("Error!");
-        setLoading(false);
-      }
-    }
-  });
-  return <FlexRowAlign height="100vh" flexDirection="column">
-      <Card sx={{
-      padding: 4,
-      maxWidth: 600,
-      marginTop: 4,
-      boxShadow: 1
-    }}>
+        if (error) {
+          setError("Error!");
+          setLoading(false);
+        }
+      },
+    });
+  return (
+    <FlexRowAlign height="100vh" flexDirection="column">
+      <Card
+        sx={{
+          padding: 4,
+          maxWidth: 600,
+          marginTop: 4,
+          boxShadow: 1,
+        }}>
         <FlexBetween flexDirection="column" mb={5}>
           <Box width={38} mb={1}>
-            <img src="/static/logo/logo.svg" width="100%" alt="Uko Logo" />
+            <img src="/static/logo/chain.png" width="100%" alt="Uko Logo" />
           </Box>
           <H1 fontSize={18} fontWeight={500}>
             Reset your password
@@ -61,42 +60,67 @@ const ForgetPassword = () => {
         </FlexBetween>
 
         <FlexBetween flexWrap="wrap" my={2}>
-          <form noValidate onSubmit={handleSubmit} style={{
-          width: "100%"
-        }}>
-            <AppTextField fullWidth name="email" type="email" label="Email" onBlur={handleBlur} onChange={handleChange} value={values.email || ""} error={Boolean(touched.email && errors.email)} helperText={touched.email && errors.email} />
+          <form
+            noValidate
+            onSubmit={handleSubmit}
+            style={{
+              width: "100%",
+            }}>
+            <AppTextField
+              fullWidth
+              name="email"
+              type="email"
+              label="Email"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.email || ""}
+              error={Boolean(touched.email && errors.email)}
+              helperText={touched.email && errors.email}
+            />
 
-            {error && <FormHelperText error sx={{
-            mt: 2,
-            fontSize: 13,
-            fontWeight: 500,
-            textAlign: "center"
-          }}>
+            {error && (
+              <FormHelperText
+                error
+                sx={{
+                  mt: 2,
+                  fontSize: 13,
+                  fontWeight: 500,
+                  textAlign: "center",
+                }}>
                 {error}
-              </FormHelperText>}
+              </FormHelperText>
+            )}
 
-            <Box sx={{
-            mt: 4
-          }}>
-              {loading ? <LoadingButton loading fullWidth variant="contained">
+            <Box
+              sx={{
+                mt: 4,
+              }}>
+              {loading ? (
+                <LoadingButton loading fullWidth variant="contained">
                   Reset
-                </LoadingButton> : <Button fullWidth type="submit" variant="contained">
+                </LoadingButton>
+              ) : (
+                <Button fullWidth type="submit" variant="contained">
                   Reset
-                </Button>}
+                </Button>
+              )}
             </Box>
           </form>
 
           <Small margin="auto" mt={3} color="text.disabled">
             Don't have an account?{" "}
-            <Link to="/register" style={{
-            display: "inline-block"
-          }}>
+            <Link
+              to="/register"
+              style={{
+                display: "inline-block",
+              }}>
               <Small color="primary.main">Create an account</Small>
             </Link>
           </Small>
         </FlexBetween>
       </Card>
-    </FlexRowAlign>;
+    </FlexRowAlign>
+  );
 };
 
 export default ForgetPassword;

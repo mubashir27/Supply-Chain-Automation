@@ -6,10 +6,11 @@ import { H1, Paragraph } from "components/Typography";
 import RootLayout from "page-sections/authentication/RootLayout";
 
 const ForgetPassword = () => {
-  return <RootLayout imgLink="/static/illustration/forget-password.svg">
+  return (
+    <RootLayout imgLink="/static/illustration/forget-password.svg">
       <FlexRowAlign height="100%">
         <Box textAlign="center" maxWidth={550} width="100%" padding={4}>
-          <img src="/static/logo/logo.svg" width={40} alt="Logo" />
+          <img src="/static/logo/chain.png" width={40} alt="Logo" />
           <H1 fontWeight={700} mt={2}>
             Forgot Password?
           </H1>
@@ -33,7 +34,8 @@ const ForgetPassword = () => {
           </form>
         </Box>
       </FlexRowAlign>
-    </RootLayout>;
+    </RootLayout>
+  );
 };
 
 export default ForgetPassword;
