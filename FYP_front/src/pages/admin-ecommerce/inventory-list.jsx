@@ -11,7 +11,9 @@ import ShoppingBasket from "icons/ShoppingBasket";
 import ProductListView from "page-sections/admin-ecommerce/product-list/list-view";
 import React, { useState } from "react"; //  styled components
 import CreateInventory from "./create-inventory";
-
+import Papa from "papaparse";
+import axios from "axios";
+import { BASE_URL } from "services/AuthenticationFunctions";
 const HeadingWrapper = styled(FlexBetween)(({ theme }) => ({
   gap: 8,
   flexWrap: "wrap",
@@ -32,8 +34,43 @@ const HeadingWrapper = styled(FlexBetween)(({ theme }) => ({
 const InventroyList = () => {
   const [selectTab, setSelectTab] = useState("1");
   const [openModal, setOpenModal] = useState(false);
+  const [isUploadCSV, setIsUploadCSV] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
   const handleOpenModal = () => setOpenModal(true);
+  const [csvData, setCsvData] = useState(null);
+
+  const uploadCSV = () => {
+    axios.post(`${BASE_URL}inventory/csv-data`, csvData);
+    // handleCloseModal()
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log("e.asda");
+    if (file) {
+      Papa.parse(file, {
+        header: false,
+        dynamicTyping: true, // Automatically convert numeric strings to numbers
+        skipEmptyLines: true, // Skip empty lines
+        complete: (result) => {
+          if (result.errors.length > 0) {
+            console.error("CSV Parsing Error:", result.errors);
+          } else {
+            const data = result.data;
+            if (data.length > 0) {
+              setCsvData(data);
+            }
+          }
+        },
+        error: (error) => {
+          console.error("CSV Parsing Error:", error);
+        },
+      });
+    }
+  };
+
+  console.log("CSV:", csvData);
+
   return (
     <Box pt={2} pb={4}>
       <TabContext value={selectTab}>
@@ -52,6 +89,7 @@ const InventroyList = () => {
             <Button
               onClick={() => {
                 setOpenModal(true);
+                setIsUploadCSV(true);
               }}
               style={{ marginRight: 20 }}
               variant="contained"
@@ -61,6 +99,7 @@ const InventroyList = () => {
             <Button
               onClick={() => {
                 setOpenModal(true);
+                setIsUploadCSV(false);
               }}
               variant="contained"
               startIcon={<Add />}>
@@ -73,7 +112,12 @@ const InventroyList = () => {
       </TabContext>
       {/* modal for adding and editing inventory list */}
       <AppModal open={openModal} handleClose={handleCloseModal}>
-        <CreateInventory heading={"Create New Inventory"} />
+        <CreateInventory
+          heading={"Create New Inventory"}
+          isUploadCSV={isUploadCSV}
+          handleFileChange={handleFileChange}
+          uploadCSV={uploadCSV}
+        />
       </AppModal>
       {/* end modal for adding and editing inventory list end */}
     </Box>

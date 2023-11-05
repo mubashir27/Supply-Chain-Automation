@@ -9,6 +9,7 @@ app.use(cors());
 const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use('/user', require('./routes/userRoute'));
+app.use('/inventory', require('./routes/inventory'));
 app.use(errorHandler);
 
 app.listen(port, () => {

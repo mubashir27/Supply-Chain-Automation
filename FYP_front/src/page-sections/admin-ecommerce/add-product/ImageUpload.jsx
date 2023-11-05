@@ -48,10 +48,16 @@ const DeleteIconButton = styled(IconButton)(({ theme }) => {
 }); // --------------------------------------------------------------
 
 // --------------------------------------------------------------
-const ImageUpload = ({ onDrop, handleRemoveImage, files }) => {
+const ImageUpload = ({
+  onDrop,
+  handleRemoveImage,
+  files,
+  onChange = () => {},
+  isUploadCSV,
+}) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+      "image/*": [".png", ".gif", ".jpeg", ".jpg", ".csv"],
     },
     onDrop,
   });
@@ -62,28 +68,37 @@ const ImageUpload = ({ onDrop, handleRemoveImage, files }) => {
         // backgroundColor: "black",
         // height: "70%",
       }}>
-      <Box
-        {...getRootProps({
-          className: "dropzone",
-        })}
-        sx={{
-          padding: 3,
-          cursor: "pointer",
-          textAlign: "center",
-        }}>
-        <UploadOnCloud
-          sx={{
-            fontSize: 38,
-            color: "text.disabled",
-          }}
-        />
-        <Tiny fontWeight={600}>Drop your images here or</Tiny>
-        <H6 fontSize={12} color="primary.main">
-          Select click to browse
-        </H6>
+      {!isUploadCSV ? (
+        <>
+          <Box
+            {...getRootProps({
+              className: "dropzone",
+            })}
+            sx={{
+              padding: 3,
+              cursor: "pointer",
+              textAlign: "center",
+            }}>
+            <UploadOnCloud
+              sx={{
+                fontSize: 38,
+                color: "text.disabled",
+              }}
+            />
+            <Tiny fontWeight={600}>Drop your images here or</Tiny>
+            <H6 fontSize={12} color="primary.main">
+              Select click to browse
+            </H6>
 
-        <input {...getInputProps()} placeholder="Select click to browse" />
-      </Box>
+            <input {...getInputProps()} placeholder="Select click to browse" />
+          </Box>
+        </>
+      ) : (
+        <>
+          <Tiny fontWeight={600}>Please select your CSV file</Tiny>
+          <input type="file" accept=".csv" onChange={onChange} />
+        </>
+      )}
 
       {files.length > 0 && (
         <FlexBox gap={2} mt={2}>

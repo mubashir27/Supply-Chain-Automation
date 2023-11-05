@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5004/";
+export const BASE_URL = "http://localhost:5004/";
 const USER_URL = "user/";
 
 export const RegisterAPI = async (body) => {
